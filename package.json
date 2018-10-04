@@ -2,9 +2,10 @@
   "name": "master-tab",
   "version": "1.0.0",
   "description": "Controls which tab should be the master tab when opening a page in multiple browser tabs",
-  "main": "master-tab.js",
+  "main": "dist/master-tab.js",
+  "source": "master-tab.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "microbundle --name MasterTab"
   },
   "keywords": [
     "master-tab",
