@@ -7,9 +7,9 @@
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
-    "build": "microbundle --name MasterTab",
+    "build": "microbundle --name MasterTab --external none",
     "prebuild:watch": "npm run clean",
-    "build:watch": "microbundle watch --name MasterTab"
+    "build:watch": "microbundle watch --name MasterTab --external none"
   },
   "keywords": [
     "master-tab",
