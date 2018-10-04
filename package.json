@@ -5,7 +5,11 @@
   "main": "dist/master-tab.js",
   "source": "master-tab.js",
   "scripts": {
-    "build": "microbundle --name MasterTab"
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "microbundle --name MasterTab",
+    "prebuild:watch": "npm run clean",
+    "build:watch": "microbundle watch --name MasterTab"
   },
   "keywords": [
     "master-tab",
