@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/arnellebalane/master-tab/issues"
   },
-  "homepage": "https://github.com/arnellebalane/master-tab#readme"
+  "homepage": "https://github.com/arnellebalane/master-tab#readme",
+  "dependencies": {
+    "@arnellebalane/event-emitter": "1.0.1"
+  }
 }
