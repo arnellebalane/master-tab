@@ -1,6 +1,6 @@
 {
-  "name": "master-tab",
-  "version": "1.0.0",
+  "name": "@arnellebalane/master-tab",
+  "version": "0.0.0",
   "description": "Controls which tab should be the master tab when opening a page in multiple browser tabs",
   "main": "dist/master-tab.js",
   "source": "master-tab.js",
