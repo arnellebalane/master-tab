@@ -7,9 +7,9 @@ const INSTANCE_ID = MasterTab.INSTANCE_ID
     || Math.floor(Math.random() * 0x10000).toString(16);
 
 const state = {
-    ACTIVE: 0,
-    PASSIVE: 1,
-    HIDDEN: 2
+    ACTIVE: 'a',
+    PASSIVE: 'p',
+    HIDDEN: 'h'
 };
 
 const getState = () => {
@@ -20,7 +20,18 @@ const getState = () => {
 
 const handleTabStackChange = tabStackString => {
     const tabStack = tabStackString ? tabStackString.split(';') : [];
-    const [instanceId, instanceState] = tabStack.pop().split(':');
+
+    for (let i = tabStack.length - 1; i >= 0; i--) {
+        const [instanceId, instanceState] = tabStack[i].split(':');
+        if ([state.ACTIVE, state.PASSIVE].includes(instanceState)) {
+            if (instanceId === INSTANCE_ID) {
+                return MasterTab.emit('change', true);
+            }
+            break;
+        }
+    }
+
+    return MasterTab.emit('change', false);
 };
 
 ['pageshow', 'pagehide', 'focus', 'blur', 'visibilitychange'].forEach(event => {
@@ -58,7 +69,6 @@ window.addEventListener('unload', () => {
 
     const updatedTabStackString = tabStack.join(';');
     localStorage.setItem(STORAGE_KEY, updatedTabStackString);
-    handleTabStackChange(updatedTabStackString);
 });
 
 window.addEventListener('storage', e => {
