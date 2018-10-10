@@ -1,0 +1,6 @@
+<script src="dist/master-tab.umd.js"></script>
+<script>
+    MasterTab.on('change', isMaster => {
+        document.title = isMaster ? 'MASTER' : 'SLAVE';
+    });
+</script>
