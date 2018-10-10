@@ -18,20 +18,26 @@ const getState = () => {
     return state.PASSIVE;
 };
 
-const handleTabStackChange = tabStackString => {
-    const tabStack = tabStackString ? tabStackString.split(';') : [];
-
+const findLastTabWithState = (tabStack, state) => {
     for (let i = tabStack.length - 1; i >= 0; i--) {
         const [instanceId, instanceState] = tabStack[i].split(':');
-        if ([state.ACTIVE, state.PASSIVE].includes(instanceState)) {
-            if (instanceId === INSTANCE_ID) {
-                return MasterTab.emit('change', true);
-            }
-            break;
+        if (instanceState === state) {
+            return instanceId;
         }
     }
+    return null;
+};
 
-    return MasterTab.emit('change', false);
+const handleTabStackChange = tabStackString => {
+    const tabStack = tabStackString ? tabStackString.split(';') : [];
+    const tabStates = [state.ACTIVE, state.PASSIVE, state.HIDDEN];
+
+    for (const tabState of tabStates) {
+        const selectedTab = findLastTabWithState(tabStack, tabState);
+        if (selectedTab) {
+            return MasterTab.emit('change', selectedTab === INSTANCE_ID);
+        }
+    }
 };
 
 ['pageshow', 'pagehide', 'focus', 'blur', 'visibilitychange'].forEach(event => {
