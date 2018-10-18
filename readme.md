@@ -14,7 +14,7 @@ npm install @arnellebalane/master-tab
 Or via CDN (unpkg.com):
 
 ```html
-<script src="https://unpkg.com/@arnellebalane/master-tab@1.0.0/dist/master-tab.umd.js"></script>
+<script src="https://unpkg.com/@arnellebalane/master-tab@1.1.1/dist/master-tab.umd.js"></script>
 ```
 
 
