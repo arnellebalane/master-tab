@@ -13,8 +13,11 @@ const state = {
 };
 
 const getTabState = () => {
-    if (document.visibilityState === 'hidden') return state.HIDDEN;
-    if (document.hasFocus()) return state.ACTIVE;
+    if (document.visibilityState === 'hidden') {
+        return state.HIDDEN;
+    } else if (document.hasFocus()) {
+        return state.ACTIVE;
+    }
     return state.PASSIVE;
 };
 
@@ -31,8 +34,8 @@ const handleTabStackChange = tabStack => {
     MasterTab.emit('change', tabStack[0] === INSTANCE_ID);
 };
 
-['pageshow', 'focus', 'visibilitychange'].forEach(event => {
-    window.addEventListener(event, e => {
+['pageshow', 'focus', 'visibilitychange'].forEach(eventName => {
+    window.addEventListener(eventName, () => {
         if (getTabState() === state.HIDDEN) {
             return;
         }
