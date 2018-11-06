@@ -9,7 +9,8 @@
     "prebuild": "npm run clean",
     "build": "microbundle --name MasterTab --external none",
     "prebuild:watch": "npm run clean",
-    "build:watch": "microbundle watch --name MasterTab --external none"
+    "build:watch": "microbundle watch --name MasterTab --external none",
+    "lint": "eslint *.js"
   },
   "keywords": [
     "master-tab",
@@ -32,6 +33,17 @@
     "eslint": "5.8.0",
     "eslint-config-arnellebalane": "1.3.0",
     "microbundle": "0.6.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "arnellebalane"
+    ],
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true
+    }
   },
   "publishConfig": {
     "access": "public"
